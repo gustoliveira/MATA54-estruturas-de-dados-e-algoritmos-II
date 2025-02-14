@@ -1,10 +1,13 @@
 import random
 from benchmark import benchmark
+from cms import CountMinSketch
 
-elements = int(input("Enter elements variaty size: "))
-input = int(input("Enter input size: "))
+epsilon = 0.002719 # width = 1000
+delta = 0.99 # depth = 10
+cms = CountMinSketch(epsilon, delta)
 
-data = [random.randint(1, elements) for _ in range(input)]
+data = [random.randint(1, 5000) for _ in range(10000)]
 
-benchmark(data)
+benchmark(data, cms)
 
+print("Error Bound: {:.2f}".format(cms.get_error_bound(len(data))))

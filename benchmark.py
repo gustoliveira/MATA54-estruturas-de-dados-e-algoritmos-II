@@ -4,11 +4,10 @@ import random
 from bst import BST
 from cms import CountMinSketch
 
-def benchmark(data):
+def benchmark(data, cms):
     # Benchmark Insertion Times
 
     # 1. Count-Min Sketch
-    cms = CountMinSketch(width=2000, depth=10)
     t0 = time.perf_counter()
     for item in data:
         cms.add(item)
